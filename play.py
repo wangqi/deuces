@@ -10,7 +10,7 @@ class Round:
 		self.num_player = num_player
 		self.players = {}
 		self.player_keys = []
-		self.flops = []
+		self.flop_card_strs = ""
 
 	def add_player_cards(self, player_id, player_name, card_strs):
 		key = str(player_id) + "|" + player_name
@@ -28,18 +28,30 @@ class Round:
 			self.player_keys.append(key)
 		self.players[key] = card_strs
 
-	def add_flop_cards(self, card_strs):
-		self.flops = card_strs
-
 	def get_player_cards(self, player_id, player_name):
 		key = str(player_id) + "|" + player_name
 		return self.players.get(key, "")
+
+	def set_flop_cards(self, flop_card_strs):
+		self.flop_card_strs = flop_card_strs
+
+	def get_flop_cards(self):
+		return self.flop_card_strs
+
+	def add_flop_card(self, card_int):
+		card_str = Card.int_to_str(card_int)
+		if len(self.flop_card_strs) == 0:
+			self.flop_card_strs = card_str
+		else:
+			self.flop_card_strs += "," + card_str
 
 	def save_status(self):
 		lines = []
 		lines.append(str(num_players))
 		for player_key in self.player_keys:
 			lines.append(player_key + "=" + self.players.get(player_key, ""))
+		if self.flop_card_strs is not None and len(self.flop_card_strs) > 0:
+			lines.append(self.flop_card_strs)
 		with open(STATUS_FILE, 'w') as f:
 			for line in lines:
 				f.write(line)
@@ -63,6 +75,8 @@ class Round:
 			player_fields = player_key.split("|")
 			round.add_player_cards(player_id=player_fields[0], player_name=player_fields[1],
 			                       card_strs=player_cards)
+		if len(lines) > num_players+2:
+			round.set_flop_cards(lines[-1])
 		return round
 
 
@@ -145,4 +159,28 @@ for player_id in range(num_players):
 for player in players:
 	print(player)
 
+flop_card_input = input("Input the flop cards. Last: " + round.get_flop_cards())
+flop_card_ints = []
+if flop_card_input is None or len(flop_card_input) == 0:
+	flop_card_input = round.get_flop_cards()
+if len(flop_card_input) == 0:
+	flop_card_ints = deck.flop()
+	for flop_card_int in flop_card_ints:
+		round.add_flop_card(flop_card_int)
+else:
+	flop_card_strs = flop_card_input.split(",")
+	flop_card_ints = deck.flop_card(flop_card_strs)
+print("Flops: " + Card.format_pretty_cards(flop_card_ints))
+print("Total left cards in deck: %d" % deck.left_card_num())
+
 round.save_status()
+
+turn_card_int = deck.draw()
+flop_card_ints.append(turn_card_int)
+river_card_int = deck.draw()
+flop_card_ints.append(river_card_int)
+print("Turn and river cards: " + Card.format_pretty_cards(flop_card_ints))
+# create an evaluator
+evaluator = Evaluator()
+evaluator.hand_summary(board=flop_card_ints, hands=[player.cards for player in players])
+

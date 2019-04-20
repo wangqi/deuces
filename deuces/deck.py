@@ -45,9 +45,16 @@ class Deck:
             return
         for i in range(num):
             self.flop_cards.append(self.draw())
+        return self.flop_cards
 
     def flop_card(self, card_strs):
+        if card_strs is None:
+            return self.flop(3)
         self.flop_cards = self.draw_cards(card_strs)
+        return self.flop_cards
+
+    def left_card_num(self):
+        return len(self.cards)
 
     def __str__(self):
         return Card.print_pretty_cards(self.cards)
