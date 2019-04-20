@@ -1,4 +1,4 @@
-class Card ():
+class Card:
     """
     Static class that handles cards. We represent cards as 32-bit integers, so 
     there is no object instantiation - they are just ints. Most of the bits are 
@@ -33,10 +33,10 @@ class Card ():
     # converstion from string => int
     CHAR_RANK_TO_INT_RANK = dict(zip(list(STR_RANKS), INT_RANKS))
     CHAR_SUIT_TO_INT_SUIT = {
-        's' : 1, # spades
-        'h' : 2, # hearts
-        'd' : 4, # diamonds
-        'c' : 8, # clubs
+        's': 1, # spades
+        'h': 2, # hearts
+        'd': 4, # diamonds
+        'c': 8, # clubs
     }
     INT_SUIT_TO_CHAR_SUIT = 'xshxdxxxc'
 
@@ -206,7 +206,7 @@ class Card ():
         print(Card.int_to_pretty_str(card_int))
 
     @staticmethod
-    def print_pretty_cards(card_ints):
+    def format_pretty_cards(card_ints):
         """
         Expects a list of cards in integer form.
         """
@@ -217,5 +217,12 @@ class Card ():
                 output += Card.int_to_pretty_str(c) + ","
             else:
                 output += Card.int_to_pretty_str(c) + " "
-    
-        print(output)
+
+        return output
+
+    @staticmethod
+    def print_pretty_cards(card_ints):
+        """
+        Expects a list of cards in integer form.
+        """
+        print(self.format_pretty_cards(card_ints))

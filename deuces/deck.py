@@ -10,12 +10,26 @@ class Deck:
     _FULL_DECK = []
 
     def __init__(self):
+        self.cards = []
+        self.flop_cards = []
         self.shuffle()
 
     def shuffle(self):
         # and then shuffle
         self.cards = Deck.GetFullDeck()
         shuffle(self.cards)
+
+    def draw_card(self, card_strs):
+        card_ints = []
+        for card_str in card_strs:
+            card_int = Card.new(card_str)
+            card_ints.append(card_int)
+
+        # Remove given cards from desk
+        for card in self.cards:
+            for card_int in card_ints:
+                if card == card_int:
+                    self.cards.remove(card_int)
 
     def draw(self, n=1):
         if n == 1:
@@ -25,6 +39,15 @@ class Deck:
         for i in range(n):
             cards.append(self.draw())
         return cards
+
+    def flop(self, num=3):
+        if len(self.flop_cards) > 0:
+            return
+        for i in range(num):
+            self.flop_cards.append(self.draw())
+
+    def flop_card(self, card_strs):
+        self.flop_cards = self.draw_cards(card_strs)
 
     def __str__(self):
         return Card.print_pretty_cards(self.cards)
