@@ -49,6 +49,20 @@ cards = default_init_cards.split(",")
 first_player.draw_cards(cards)
 print(first_player)
 
+flop_card_input = input("Input the flop cards. Last: " + round.get_flop_cards())
+flop_card_ints = []
+if flop_card_input is None or len(flop_card_input) == 0:
+	flop_card_input = round.get_flop_cards()
+if len(flop_card_input) == 0:
+	flop_card_ints = deck.flop()
+	for flop_card_int in flop_card_ints:
+		round.add_flop_card(flop_card_int)
+else:
+	flop_card_strs = flop_card_input.split(",")
+	flop_card_ints = deck.flop_card(flop_card_strs)
+print("Flops: " + Card.format_pretty_cards(flop_card_ints))
+print("Total left cards in deck: %d" % deck.left_card_num())
+
 print("\n=== Begin Simulation ===")
 result = {}
 # create an evaluator
@@ -59,22 +73,21 @@ deck.save()
 
 for i in range(0, 10000):
 	deck.reset()
+	flop_card_ints = deck.get_flop_card_ints()
+	turn_card_int = deck.draw()
+	flop_card_ints.append(turn_card_int)
+	river_card_int = deck.draw()
+	flop_card_ints.append(river_card_int)
+
 	players = []
 	players.append(first_player)
 	for player_id in range(1, num_players, 1):
 		player = Player(player_id, deck=deck)
 		card_ints = player.draw_cards(num=2)
 		players.append(player)
-	flop_card_ints = deck.flop()
 	# print("Flops: " + Card.format_pretty_cards(flop_card_ints))
 	# print("Total left cards in deck: %d" % deck.left_card_num())
 
-	flop_card_ints = deck.get_flop_card_ints()
-	turn_card_int = deck.draw()
-	flop_card_ints.append(turn_card_int)
-	river_card_int = deck.draw()
-	flop_card_ints.append(river_card_int)
-	# evaluator.hand_summary(board=flop_card_ints, hands=[player.cards for player in players])
 	hands = [player.cards for player in players]
 	winner_method, winner_player = evaluator.hand_evaluate(board=flop_card_ints, players=players, debug=False)
 	method_count = winner_methods.get(winner_method, 0)

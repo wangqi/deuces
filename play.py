@@ -15,6 +15,7 @@ PRIORITIES = [
 
 round = Round.read_status()
 
+num_players = 0
 if round is not None and round.num_player > 0:
 	restore_last_round = input("Do you want to restore last round (y/n) ? \n")
 	if restore_last_round == 'n':
@@ -25,13 +26,14 @@ if round is not None and round.num_player > 0:
 else:
 	num_players = 2
 
-num_players = input("Number of players? (%s) \n" % num_players)
-if num_players == '':
-	num_players = 2
-else:
-	num_players = int(num_players)
-if num_players > 9:
-	num_players = 9
+if num_players == 0:
+	num_players = input("Number of players? (%s) \n" % num_players)
+	if num_players == '':
+		num_players = 2
+	else:
+		num_players = int(num_players)
+	if num_players > 9:
+		num_players = 9
 print("> total %d players" % num_players)
 
 if round is None:
