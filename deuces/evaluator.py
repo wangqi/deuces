@@ -181,5 +181,48 @@ class Evaluator(object):
                     print("Players %s tied for the win with a %s\n" % (winners,
                         self.class_to_string(self.get_rank_class(self.evaluate(hands[winners[0]], board)))))
 
+    def hand_evaluate(self, board, players, debug=True):
+        """
+        Gives a sumamry of the hand with ranks as time proceeds.
 
+        Requires that the board is in chronological order for the
+        analysis to make sense.
+        """
+
+        assert len(board) == 5, "Invalid board length"
+        for player in players:
+            hand = player.cards
+            assert len(hand) == 2, "Inavlid hand length"
+
+        stages = ["FLOP", "TURN", "RIVER"]
+
+        winner_player = None
+        for i in range(len(stages)):
+            best_rank = 7463  # rank one worse than worst hand
+            winners = {}
+            for idx, player in enumerate(players):
+                hand = player.cards
+                # evaluate current board position
+                rank = self.evaluate(hand, board[:(i + 3)])
+                rank_class = self.get_rank_class(rank)
+                class_string = self.class_to_string(rank_class)
+                percentage = 1.0 - self.get_five_card_rank_percentage(rank)  # higher better here
+
+                # detect winner
+                if rank == best_rank:
+                    winners['tie'] = player
+                    best_rank = rank
+                    winner_player = player
+                elif rank < best_rank:
+                    winners = {'win': player}
+                    best_rank = rank
+                    winner_player = player
+
+        winner_method = self.class_to_string(self.get_rank_class(self.evaluate(winner_player.cards, board)))
+
+        if debug:
+            print("Board cards: " + Card.format_pretty_cards(board))
+            print("Winner cards:" + Card.format_pretty_cards(winner_player.cards))
+            print("Winner method: ", winner_method)
+        return (winner_method, winner_player)
 

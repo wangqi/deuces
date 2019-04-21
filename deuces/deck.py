@@ -13,6 +13,17 @@ class Deck:
         self.cards = []
         self.flop_cards = []
         self.shuffle()
+        self.saved_cards = []
+        self.saved_flop_cards = []
+
+    def save(self):
+        self.saved_cards = list(self.cards)
+        self.saved_flop_cards = list(self.flop_cards)
+
+    def reset(self):
+        self.cards = list(self.saved_cards)
+        self.flop_cards = list(self.saved_flop_cards)
+        shuffle(self.cards)
 
     def shuffle(self):
         # and then shuffle
@@ -30,6 +41,7 @@ class Deck:
             for card_int in card_ints:
                 if card == card_int:
                     self.cards.remove(card_int)
+        return card_ints
 
     def draw(self, n=1):
         if n == 1:
@@ -50,7 +62,10 @@ class Deck:
     def flop_card(self, card_strs):
         if card_strs is None:
             return self.flop(3)
-        self.flop_cards = self.draw_cards(card_strs)
+        self.flop_cards = self.draw_card(card_strs)
+        return self.flop_cards
+
+    def get_flop_card_ints(self):
         return self.flop_cards
 
     def left_card_num(self):
