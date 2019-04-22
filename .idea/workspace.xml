@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e53bdc82-b2bb-486b-a0fe-4cd152dfaf41" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/round.state" beforeDir="false" afterPath="$PROJECT_DIR$/round.state" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,9 +11,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/deuces$play.coverage" NAME="play Coverage Results" MODIFIED="1555857612130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deuces$play.coverage" NAME="play Coverage Results" MODIFIED="1555892217121" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/deuces$play_flop.coverage" NAME="play_flop Coverage Results" MODIFIED="1555857527296" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/deuces$play_solo.coverage" NAME="play_solo Coverage Results" MODIFIED="1555859060704" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deuces$play_solo.coverage" NAME="play_solo Coverage Results" MODIFIED="1555859098911" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/deuces$go.coverage" NAME="go Coverage Results" MODIFIED="1555747579440" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
@@ -52,8 +51,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/round.state">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+            <state relative-caret-position="68">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -169,7 +168,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.play_solo">
+  <component name="RunManager" selected="Python.play">
     <configuration name="go" type="PythonConfigurationType" factoryName="Python">
       <module name="deuces" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -275,12 +274,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1555745886596</updated>
-      <workItem from="1555745887842" duration="24503000" />
+      <workItem from="1555745887842" duration="25845000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24503000" />
+    <option name="totallyTimeSpent" value="25845000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="699" y="23" width="2375" height="1577" extended-state="0" />
@@ -293,7 +292,7 @@
       <window_info anchor="bottom" id="File Transfer" order="0" weight="0.32255846" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32938644" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.33333334" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.33333334" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.36395267" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -492,8 +491,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/round.state">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+        <state relative-caret-position="68">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
